@@ -1,6 +1,5 @@
 import { Flex, Image, Typography } from 'antd';
 import PropTypes from 'prop-types';
-import moviePoster from '/movie_poster.jpg';
 import { format } from 'date-fns';
 export default function MovieCard({ title, image, date, genre, overview }) {
   function truncateDescription(description, maxLength) {
@@ -24,7 +23,7 @@ export default function MovieCard({ title, image, date, genre, overview }) {
   return (
     <Flex className="movie-card">
       <div style={{ flexShrink: 0, width: '180px', height: '280px' }}>
-        <Image width={180} height={280} src={image ? `${image}` : moviePoster} />
+        <Image width={180} height={280} src={image} />
       </div>
       <Flex vertical gap={8} style={{ padding: '10px 20px' }}>
         <Typography.Title level={4} style={{ marginBottom: 0 }}>

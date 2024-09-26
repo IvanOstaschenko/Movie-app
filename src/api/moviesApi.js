@@ -22,14 +22,14 @@ export default class MoviesApi {
     }
     return genresArray;
   }
-  async getMoviesList(pageNumber) {
+  async getMoviesList(pageNumber, requestText) {
     const options = {
       headers: {
         Authorization: `Bearer ${this.apiConfig.APIReadAccessToken}`,
       },
     };
     const res = await fetch(
-      `${this.apiConfig.requestUrl}/3/search/movie?query=return&include_adult=true&language=en-US&page=${pageNumber}`,
+      `${this.apiConfig.requestUrl}/3/search/movie?query=${requestText}&include_adult=true&language=en-US&page=${pageNumber}`,
       options,
     );
     if (!res.ok) {
