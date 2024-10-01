@@ -9,7 +9,6 @@ export default function SearchForm({ submitAction }) {
       style={{ marginBottom: '34px' }}
       onFinish={(e) => e.preventDefault()}
       onValuesChange={(text) => {
-        console.log(text.request);
         debouncedSubmit(text.request);
       }}
     >

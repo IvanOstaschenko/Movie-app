@@ -1,16 +1,14 @@
 import { Alert, List } from 'antd';
 import MovieCard from './MovieCard.jsx';
-import { useEffect, useState } from 'react';
-import MoviesApi from '../api/moviesApi.js';
+import { useContext, useEffect, useState } from 'react';
 import { CloseSquareFilled } from '@ant-design/icons';
 import SearchForm from './SearchForm.jsx';
-import moviePoster from '/movie_poster.jpg';
+import { ApiContext } from '../contexts/ApiContext.jsx';
 
-export default function Movies() {
-  const apiService = new MoviesApi();
+export default function Search() {
+  const { apiService } = useContext(ApiContext);
   const [errorApi, setErrorApi] = useState(null);
   const [requestText, setRequestText] = useState('return');
-  const [genres, setGenres] = useState(null);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [listPage, setListPage] = useState(1);
@@ -18,10 +16,6 @@ export default function Movies() {
 
   async function getMovies() {
     try {
-      if (!genres) {
-        let res = await apiService.getGenres();
-        setGenres(res);
-      }
       let movies = await apiService.getMoviesList(listPage, requestText);
       setMovies(movies.results);
       setTotalCountMovies(movies.total_results);
@@ -73,19 +67,7 @@ export default function Movies() {
             dataSource={movies}
             renderItem={(item) => (
               <List.Item>
-                <MovieCard
-                  title={item.original_title}
-                  image={
-                    item.poster_path
-                      ? `${apiService.apiConfig.imageUrl}` + item.poster_path
-                      : moviePoster
-                  }
-                  date={item.release_date}
-                  genre={item.genre_ids.map((i) => {
-                    return genres[i];
-                  })}
-                  overview={item.overview}
-                />
+                <MovieCard movie={item} />
               </List.Item>
             )}
             loading={{ spinning: isLoading, fullscreen: isLoading }}

@@ -1,1 +1,1 @@
-Movies app
+Search app

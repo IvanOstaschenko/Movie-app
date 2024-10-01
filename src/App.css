@@ -4,3 +4,26 @@ body {
 .movie-card {
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
 }
+.rate-circle{
+  align-items: center;
+  border: 2px solid;
+  border-radius: 50%;
+  display: flex;
+  font-size: 12px;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+}
+.rate-circle-level-1{
+  border-color: #E90000;
+}
+.rate-circle-level-2{
+  border-color: #E97E00;
+}
+.rate-circle-level-3{
+  border-color: #E9D100;
+}
+.rate-circle-level-4{
+  border-color: #66E900;
+}
+
